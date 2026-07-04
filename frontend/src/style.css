@@ -19,16 +19,45 @@ h1 {
 .controls {
   display: flex;
   justify-content: center;
-  align-items: center;
-  gap: 12px;
+  gap: 48px;
   margin-bottom: 24px;
+}
+
+.panel {
+  width: 320px;
+  padding: 16px;
+  border: 1px solid #666;
+  border-radius: 8px;
+}
+
+.panel h2 {
+  margin-top: 0;
+}
+
+.panel h3 {
+  margin-bottom: 8px;
+  border-bottom: 1px solid #999;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 8px 0;
+}
+
+.row input {
+  width: 170px;
 }
 
 .viewer {
   display: flex;
   justify-content: center;
-  gap: 32px;
-  margin-top: 20px;
+  gap: 24px;
+}
+
+.viewer canvas {
+  border: 1px solid #666;
 }
 
 .viewer > div {
@@ -41,17 +70,20 @@ canvas {
   border: 1px solid #888;
   width: 640px;
   height: 640px;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0,0,0,.3);
 }
 
 label {
   margin-right: 12px;
 }
 
-input {
-  width: 100px;
+input{
+    width:120px;
 }
 
-button {
-  margin-left: 12px;
-  padding: 4px 12px;
+button{
+    padding:8px 18px;
+    border-radius:8px;
+    cursor:pointer;
 }

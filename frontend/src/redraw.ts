@@ -1,6 +1,7 @@
 import { loadJulia, loadMandelbrot } from "./render"
+import { updateInfo } from "./updateJuliaPanel"
 
-export function redraw(
+export async function redraw(
   mandelbrotCanvas: HTMLCanvasElement,
   juliaCanvas: HTMLCanvasElement,
   cx: number,
@@ -8,22 +9,29 @@ export function redraw(
   scale: number,
 ) {
 
-  // マンデルブロ集合
-  loadMandelbrot(
-    mandelbrotCanvas,
-    cx,
-    cy,
-    scale,
-  )
+  await Promise.all([
+    loadMandelbrot(
+      mandelbrotCanvas,
+      cx,
+      cy,
+      scale,
+    ),
 
-  // 対応するジュリア集合
-  loadJulia(
-    juliaCanvas,
+    loadJulia(
+      juliaCanvas,
+      0.0,
+      0.0,
+      cx,
+      cy,
+      scale,
+    ),
+  ])
+
+  updateInfo(
     0.0,
     0.0,
     cx,
     cy,
     scale,
   )
-
 }

@@ -16,36 +16,100 @@ app.innerHTML = `
 
   <div class="controls">
 
-    <label>
-      cx:
-      <input id="cx" value="-0.75">
-    </label>
+    <section class="panel">
+      <h2>Mandelbrot Set</h2>
 
-    <label>
-      cy:
-      <input id="cy" value="0.1">
-    </label>
+      <h3>Mandelbrot parameter</h3>
 
-    <label>
-      scale:
-      <input id="scale" value="1">
-    </label>
+      <label>View center</label>
 
-    <button id="draw">
-      Draw
-    </button>
+      <div class="row">
+        <span>Re(z):</span>
+        <input id="cx" value="-0.75">
+      </div>
+
+      <div class="row">
+        <span>Im(z):</span>
+        <input id="cy" value="0.1">
+      </div>
+
+      <div class="row">
+        <span>Scale:</span>
+        <input id="scale" value="1">
+      </div>
+
+      <button id="draw">
+        Draw
+      </button>
+    </section>
+
+    <section class="panel">
+      <h2>Julia Set</h2>
+
+      <h3>Julia parameter</h3>
+
+      <div class="row">
+        <span>c =</span>
+        <span id="julia-c">
+          -0.75 + 0.10i
+        </span>
+      </div>
+
+      <h3>View center</h3>
+
+      <div class="row">
+        <span>Re(z):</span>
+        <span id="view-re">
+          0.0
+        </span>
+      </div>
+
+      <div class="row">
+        <span>Im(z):</span>
+        <span id="view-im">
+          0.0
+        </span>
+      </div>
+
+      <div class="row">
+        <span>Scale:</span>
+        <span id="view-scale">
+          1×
+        </span>
+      </div>
+
+      <div class="row">
+        <span>Render:</span>
+        <span id="render-time">
+          --
+        </span>
+      </div>
+
+      <div class="row">
+        <span>Resolution:</span>
+        <span id="resolution">
+          --
+        </span>
+      </div>
+
+      <div class="row">
+        <span>Iterations:</span>
+        <span id="iterations">
+          --
+        </span>
+      </div>
+
+    </section>
 
   </div>
 
   <div class="viewer">
 
     <div>
-      <h2>Mandelbrot Set</h2>
       <canvas id="mandelbrot"></canvas>
     </div>
 
     <div>
-      <h2>Julia Set</h2>
       <canvas id="julia"></canvas>
     </div>
 

@@ -16,11 +16,30 @@ The project consists of a FastAPI backend for numerical computation and a TypeSc
 
 ---
 
-## Screenshot
+## Screenshots
 
 ### Initial View
 
-<!-- スクリーンショット -->
+![Initial View](images/initial_view.png)
+
+The initial view shows the Mandelbrot set together with the corresponding Julia set.
+
+---
+
+### Favorite Region
+
+![Favorite Region](images/favorite_region1.png)
+
+A zoomed-in region around the boundary of the Mandelbrot set.
+
+```text
+View center
+Re(z) = -0.74
+Im(z) = 0.18
+
+Scale
+2×
+```
 
 ---
 
@@ -116,7 +135,6 @@ http://localhost:5173
 
 - Python
 - FastAPI
-- NumPy
 - Numba
 
 ### Frontend

@@ -1,3 +1,4 @@
+import "./style.css"
 import { setupDrag } from "./drag"
 import { setupZoom } from "./zoom"
 import { setupDraw } from "./draw"

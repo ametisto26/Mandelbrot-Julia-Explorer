@@ -12,6 +12,7 @@ def _julia_value(
     ci,
     max_iter,
 ):
+    # log(2)
     LOG2 = np.log(2.0)
 
     for i in range(max_iter):
@@ -19,10 +20,12 @@ def _julia_value(
         zr2 = zr * zr
         zi2 = zi * zi
 
+        # 発散判定
         if zr2 + zi2 > 4.0:
 
             modulus = np.sqrt(zr2 + zi2)
 
+            # スムーズカラーリング
             return (
                 i + 1
                 - np.log(np.log(modulus))
@@ -33,6 +36,7 @@ def _julia_value(
         zi = 2.0 * zr * zi + ci
         zr = new_zr
 
+    # 最後まで発散しなかった点
     return 0.0
 
 
@@ -56,14 +60,17 @@ def _calculate(
     dx = (xmax - xmin) / (width - 1)
     dy = (ymax - ymin) / (height - 1)
 
+    # 2×2 スーパーサンプリング
     offset = 0.25
 
     for py in prange(height):
         for px in range(width):
 
+            # 現在の画素の左下座標
             x0 = xmin + px * dx
             y0 = ymin + py * dy
 
+            # 4点サンプリングして平均化
             value = (
                 _julia_value(
                     x0 + offset * dx,
@@ -118,7 +125,7 @@ def calculate_julia(
     base_width = 3.0
     base_height = 3.0
 
-    # 解像度
+    # 描画解像度
     width = min(
         int(
             1200
@@ -129,6 +136,7 @@ def calculate_julia(
 
     height = width
 
+    # 表示範囲
     x_width = base_width / scale
     y_height = base_height / scale
 
@@ -138,6 +146,7 @@ def calculate_julia(
     ymin = view_cy - y_height / 2
     ymax = view_cy + y_height / 2
 
+    # 描画
     divergence_step = _calculate(
         xmin,
         xmax,

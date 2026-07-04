@@ -14,7 +14,8 @@ const app =
 app.innerHTML = `
   <h1>Mandelbrot–Julia Explorer</h1>
 
-  <div>
+  <div class="controls">
+
     <label>
       cx:
       <input id="cx" value="-0.75">
@@ -33,9 +34,11 @@ app.innerHTML = `
     <button id="draw">
       Draw
     </button>
+
   </div>
 
   <div class="viewer">
+
     <div>
       <h2>Mandelbrot Set</h2>
       <canvas id="mandelbrot"></canvas>
@@ -45,6 +48,7 @@ app.innerHTML = `
       <h2>Julia Set</h2>
       <canvas id="julia"></canvas>
     </div>
+
   </div>
 `
 

@@ -24,6 +24,15 @@ The project consists of a FastAPI backend for numerical computation and a TypeSc
 
 The initial view shows the Mandelbrot set together with the corresponding Julia set.
 
+```text
+View center
+Re(z) = -0.75
+Im(z) = 0.1
+
+Scale
+1×
+```
+
 ---
 
 ### Favorite Region

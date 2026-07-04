@@ -1,10 +1,14 @@
-import { loadMandelbrot } from "./render"
+import {
+  loadJulia,
+  loadMandelbrot,
+} from "./render"
 
 export function setupDrag(
-  canvas: HTMLCanvasElement,
+  mandelbrotCanvas: HTMLCanvasElement,
+  juliaCanvas: HTMLCanvasElement,
   cxInput: HTMLInputElement,
   cyInput: HTMLInputElement,
-  scaleInput: HTMLInputElement
+  scaleInput: HTMLInputElement,
 ) {
 
   let dragging = false
@@ -12,7 +16,7 @@ export function setupDrag(
   let lastX = 0
   let lastY = 0
 
-  canvas.addEventListener(
+  mandelbrotCanvas.addEventListener(
     "mousedown",
     (event) => {
 
@@ -24,7 +28,7 @@ export function setupDrag(
     }
   )
 
-  canvas.addEventListener(
+  mandelbrotCanvas.addEventListener(
     "mouseup",
     () => {
 
@@ -34,16 +38,37 @@ export function setupDrag(
 
       dragging = false
 
-      loadMandelbrot(
-        Number(cxInput.value),
-        Number(cyInput.value),
+      const cx =
+        Number(cxInput.value)
+
+      const cy =
+        Number(cyInput.value)
+
+      const scale =
         Number(scaleInput.value)
+
+      // マンデルブロ集合を再描画
+      loadMandelbrot(
+        mandelbrotCanvas,
+        cx,
+        cy,
+        scale,
+      )
+
+      // 対応するジュリア集合を再描画
+      loadJulia(
+        juliaCanvas,
+        0.0,
+        0.0,
+        cx,
+        cy,
+        scale,
       )
 
     }
   )
 
-  canvas.addEventListener(
+  mandelbrotCanvas.addEventListener(
     "mouseleave",
     () => {
 
@@ -52,7 +77,7 @@ export function setupDrag(
     }
   )
 
-  canvas.addEventListener(
+  mandelbrotCanvas.addEventListener(
     "mousemove",
     (event) => {
 
@@ -80,12 +105,12 @@ export function setupDrag(
 
       cxInput.value = String(
         Number(cxInput.value)
-        - dx / canvas.width * width
+        - dx / mandelbrotCanvas.width * width
       )
 
       cyInput.value = String(
         Number(cyInput.value)
-        + dy / canvas.height * height
+        + dy / mandelbrotCanvas.height * height
       )
 
     }

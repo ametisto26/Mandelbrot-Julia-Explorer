@@ -1,13 +1,17 @@
-import { loadMandelbrot } from "./render"
+import {
+  loadJulia,
+  loadMandelbrot,
+} from "./render"
 
 export function setupZoom(
-  canvas: HTMLCanvasElement,
+  mandelbrotCanvas: HTMLCanvasElement,
+  juliaCanvas: HTMLCanvasElement,
   cxInput: HTMLInputElement,
   cyInput: HTMLInputElement,
-  scaleInput: HTMLInputElement
+  scaleInput: HTMLInputElement,
 ) {
 
-  canvas.addEventListener(
+  mandelbrotCanvas.addEventListener(
     "wheel",
     (event) => {
 
@@ -22,10 +26,13 @@ export function setupZoom(
           : oldScale / 1.2
 
       const x =
-        event.offsetX / canvas.clientWidth
+        event.offsetX
+        / mandelbrotCanvas.clientWidth
 
       const y =
-        1 - event.offsetY / canvas.clientHeight
+        1
+        - event.offsetY
+        / mandelbrotCanvas.clientHeight
 
       const viewWidth =
         3.0 / oldScale
@@ -70,15 +77,27 @@ export function setupZoom(
       scaleInput.value =
         String(newScale)
 
+      // マンデルブロ集合を再描画
       loadMandelbrot(
+        mandelbrotCanvas,
         newCx,
         newCy,
-        newScale
+        newScale,
+      )
+
+      // 対応するジュリア集合を再描画
+      loadJulia(
+        juliaCanvas,
+        0.0,
+        0.0,
+        newCx,
+        newCy,
+        newScale,
       )
 
     },
     {
-      passive: false
+      passive: false,
     }
   )
 

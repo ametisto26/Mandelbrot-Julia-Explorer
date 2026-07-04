@@ -1,23 +1,44 @@
-import { loadMandelbrot } from "./render"
+import { loadJulia, loadMandelbrot } from "./render"
 
 export function setupDraw(
-  button: HTMLButtonElement,
+  drawButton: HTMLButtonElement,
+  mandelbrotCanvas: HTMLCanvasElement,
+  juliaCanvas: HTMLCanvasElement,
   cxInput: HTMLInputElement,
   cyInput: HTMLInputElement,
-  scaleInput: HTMLInputElement
+  scaleInput: HTMLInputElement,
 ) {
 
-  button.addEventListener(
+  drawButton.addEventListener(
     "click",
     () => {
 
-      loadMandelbrot(
-        Number(cxInput.value),
-        Number(cyInput.value),
+      const cx =
+        Number(cxInput.value)
+
+      const cy =
+        Number(cyInput.value)
+
+      const scale =
         Number(scaleInput.value)
+
+      // マンデルブロ集合を描画
+      loadMandelbrot(
+        mandelbrotCanvas,
+        cx,
+        cy,
+        scale,
       )
 
+      // 対応するジュリア集合を描画
+      loadJulia(
+        juliaCanvas,
+        0.0,
+        0.0,
+        cx,
+        cy,
+        scale,
+      )
     }
   )
-
 }

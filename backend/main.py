@@ -1,6 +1,8 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+
 from backend.mandelbrot import calculate_mandelbrot
+from backend.julia import calculate_julia
 
 app = FastAPI()
 
@@ -17,7 +19,7 @@ app.add_middleware(
 @app.get("/")
 def root():
     return {
-        "message": "hello mandelbrot"
+        "message": "hello mandelbrot-julia"
     }
 
 @app.get("/mandelbrot")
@@ -28,3 +30,12 @@ def mandelbrot(
 ):
     return calculate_mandelbrot(cx, cy, scale)
 
+@app.get("/julia")
+def julia(
+    view_cx: float,
+    view_cy: float,
+    cr: float,
+    ci: float,
+    scale: float
+):
+    return calculate_julia(view_cx, view_cy, cr, ci, scale)

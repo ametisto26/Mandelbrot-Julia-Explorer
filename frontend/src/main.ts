@@ -1,13 +1,17 @@
-import { loadMandelbrot } from "./render"
+import { loadMandelbrot, loadJulia } from "./render"
 import { setupDrag } from "./drag"
 import { setupZoom } from "./zoom"
 import { setupDraw } from "./draw"
 
-// アプリケーションのUIを生成
-const app = document.querySelector<HTMLDivElement>("#app")!
+// ====================
+// UIの生成
+// ====================
+
+const app =
+  document.querySelector<HTMLDivElement>("#app")!
 
 app.innerHTML = `
-  <h1>Mandelbrot Explorer</h1>
+  <h1>Mandelbrot–Julia Explorer</h1>
 
   <div>
     <label>
@@ -30,10 +34,23 @@ app.innerHTML = `
     </button>
   </div>
 
-  <canvas id="canvas"></canvas>
+  <div class="viewer">
+    <div>
+      <h2>Mandelbrot Set</h2>
+      <canvas id="mandelbrot"></canvas>
+    </div>
+
+    <div>
+      <h2>Julia Set</h2>
+      <canvas id="julia"></canvas>
+    </div>
+  </div>
 `
 
-// UI要素を取得
+// ====================
+// UI要素の取得
+// ====================
+
 const cxInput =
   document.querySelector<HTMLInputElement>("#cx")!
 
@@ -46,34 +63,68 @@ const scaleInput =
 const drawButton =
   document.querySelector<HTMLButtonElement>("#draw")!
 
-const canvas =
-  document.querySelector<HTMLCanvasElement>("#canvas")!
+const mandelbrotCanvas =
+  document.querySelector<HTMLCanvasElement>("#mandelbrot")!
 
-// イベントを登録
+const juliaCanvas =
+  document.querySelector<HTMLCanvasElement>("#julia")!
+
+// ====================
+// イベント登録
+// ====================
+
 setupDrag(
-  canvas,
+  mandelbrotCanvas,
+  juliaCanvas,
   cxInput,
   cyInput,
-  scaleInput
+  scaleInput,
 )
 
 setupZoom(
-  canvas,
+  mandelbrotCanvas,
+  juliaCanvas,
   cxInput,
   cyInput,
-  scaleInput
+  scaleInput,
 )
 
 setupDraw(
   drawButton,
+  mandelbrotCanvas,
+  juliaCanvas,
   cxInput,
   cyInput,
-  scaleInput
+  scaleInput,
 )
 
+// ====================
 // 初期描画
+// ====================
+
+const initialMandelbrot = {
+  cx: -0.75,
+  cy: 0.1,
+  scale: 1,
+}
+
+const initialJulia = {
+  viewCx: 0.0,
+  viewCy: 0.0,
+}
+
 loadMandelbrot(
-  -0.75,
-  0.1,
-  1
+  mandelbrotCanvas,
+  initialMandelbrot.cx,
+  initialMandelbrot.cy,
+  initialMandelbrot.scale,
+)
+
+loadJulia(
+  juliaCanvas,
+  initialJulia.viewCx,
+  initialJulia.viewCy,
+  initialMandelbrot.cx,
+  initialMandelbrot.cy,
+  initialMandelbrot.scale,
 )

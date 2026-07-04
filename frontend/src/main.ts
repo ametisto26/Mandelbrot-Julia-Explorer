@@ -1,4 +1,3 @@
-import { loadMandelbrot, loadJulia } from "./render"
 import { setupDrag } from "./drag"
 import { setupZoom } from "./zoom"
 import { setupDraw } from "./draw"
@@ -71,9 +70,10 @@ const juliaCanvas =
   document.querySelector<HTMLCanvasElement>("#julia")!
 
 // ====================
-// イベント登録
+// ユーザー操作を登録
 // ====================
 
+// ドラッグによる平行移動
 setupDrag(
   mandelbrotCanvas,
   juliaCanvas,
@@ -82,6 +82,7 @@ setupDrag(
   scaleInput,
 )
 
+// ホイールによるズーム
 setupZoom(
   mandelbrotCanvas,
   juliaCanvas,
@@ -90,6 +91,7 @@ setupZoom(
   scaleInput,
 )
 
+// Drawボタンによる再描画
 setupDraw(
   drawButton,
   mandelbrotCanvas,
@@ -100,7 +102,7 @@ setupDraw(
 )
 
 // ====================
-// 初期描画
+// 初期表示
 // ====================
 
 const initialMandelbrot = {
@@ -109,6 +111,8 @@ const initialMandelbrot = {
   scale: 1,
 }
 
+// 初期状態でマンデルブロ集合と
+// 対応するジュリア集合を描画
 redraw(
   mandelbrotCanvas,
   juliaCanvas,

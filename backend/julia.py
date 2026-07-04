@@ -5,34 +5,13 @@ from numba import njit, prange
 
 
 @njit(cache=True, fastmath=True)
-def _mandelbrot_value(
-    cx,
-    cy,
+def _julia_value(
+    zr,
+    zi,
+    cr,
+    ci,
     max_iter,
 ):
-    # cardioid 判定
-    q = (
-        (cx - 0.25) * (cx - 0.25)
-        + cy * cy
-    )
-
-    if (
-        q * (q + cx - 0.25)
-        < 0.25 * cy * cy
-    ):
-        return 0.0
-
-    # period-2 bulb 判定
-    if (
-        (cx + 1.0) * (cx + 1.0)
-        + cy * cy
-        < 0.0625
-    ):
-        return 0.0
-
-    zr = 0.0
-    zi = 0.0
-
     LOG2 = np.log(2.0)
 
     for i in range(max_iter):
@@ -42,28 +21,16 @@ def _mandelbrot_value(
 
         if zr2 + zi2 > 4.0:
 
-            modulus = np.sqrt(
-                zr2 + zi2
-            )
+            modulus = np.sqrt(zr2 + zi2)
 
             return (
                 i + 1
-                - np.log(
-                    np.log(modulus)
-                ) / LOG2
+                - np.log(np.log(modulus))
+                / LOG2
             )
 
-        new_zr = (
-            zr2
-            - zi2
-            + cx
-        )
-
-        zi = (
-            2.0 * zr * zi
-            + cy
-        )
-
+        new_zr = zr2 - zi2 + cr
+        zi = 2.0 * zr * zi + ci
         zr = new_zr
 
     return 0.0
@@ -77,6 +44,8 @@ def _calculate(
     ymax,
     width,
     height,
+    cr,
+    ci,
     max_iter,
 ):
     result = np.zeros(
@@ -87,7 +56,6 @@ def _calculate(
     dx = (xmax - xmin) / (width - 1)
     dy = (ymax - ymin) / (height - 1)
 
-    # 2×2 スーパーサンプリング
     offset = 0.25
 
     for py in prange(height):
@@ -97,24 +65,32 @@ def _calculate(
             y0 = ymin + py * dy
 
             value = (
-                _mandelbrot_value(
+                _julia_value(
                     x0 + offset * dx,
                     y0 + offset * dy,
+                    cr,
+                    ci,
                     max_iter,
                 )
-                + _mandelbrot_value(
+                + _julia_value(
                     x0 + (1.0 - offset) * dx,
                     y0 + offset * dy,
+                    cr,
+                    ci,
                     max_iter,
                 )
-                + _mandelbrot_value(
+                + _julia_value(
                     x0 + offset * dx,
                     y0 + (1.0 - offset) * dy,
+                    cr,
+                    ci,
                     max_iter,
                 )
-                + _mandelbrot_value(
+                + _julia_value(
                     x0 + (1.0 - offset) * dx,
                     y0 + (1.0 - offset) * dy,
+                    cr,
+                    ci,
                     max_iter,
                 )
             ) * 0.25
@@ -124,9 +100,11 @@ def _calculate(
     return result
 
 
-def calculate_mandelbrot(
-    cx: float,
-    cy: float,
+def calculate_julia(
+    view_cx: float,
+    view_cy: float,
+    cr: float,
+    ci: float,
     scale: float,
 ):
     start = time.perf_counter()
@@ -154,10 +132,11 @@ def calculate_mandelbrot(
     x_width = base_width / scale
     y_height = base_height / scale
 
-    xmin = cx - x_width / 2
-    xmax = cx + x_width / 2
-    ymin = cy - y_height / 2
-    ymax = cy + y_height / 2
+    # 表示中心
+    xmin = view_cx - x_width / 2
+    xmax = view_cx + x_width / 2
+    ymin = view_cy - y_height / 2
+    ymax = view_cy + y_height / 2
 
     divergence_step = _calculate(
         xmin,
@@ -166,6 +145,8 @@ def calculate_mandelbrot(
         ymax,
         width,
         height,
+        cr,
+        ci,
         max_iter,
     )
 

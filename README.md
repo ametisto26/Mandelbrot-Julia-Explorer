@@ -6,9 +6,9 @@ The project combines a FastAPI backend for high-performance numerical computatio
 
 ---
 
-# マンデルブロ集合・ジュリア集合ビューア
+# マンデルブロ集合・ジュリア集合可視化ツール
 
-マンデルブロ集合とジュリア集合の対応関係を可視化するためのインタラクティブなビューワです。
+マンデルブロ集合とジュリア集合の対応関係を可視化するためのインタラクティブな可視化ツールです。
 
 バックエンドでは FastAPI と Numba を用いて集合を高速に計算し，フロントエンドでは TypeScript と HTML Canvas を用いて描画を行います。
 

@@ -1,7 +1,4 @@
-import {
-  loadJulia,
-  loadMandelbrot,
-} from "./render"
+import { redraw } from "./redraw"
 
 export function setupDrag(
   mandelbrotCanvas: HTMLCanvasElement,
@@ -38,31 +35,12 @@ export function setupDrag(
 
       dragging = false
 
-      const cx =
-        Number(cxInput.value)
-
-      const cy =
-        Number(cyInput.value)
-
-      const scale =
-        Number(scaleInput.value)
-
-      // マンデルブロ集合を再描画
-      loadMandelbrot(
+      redraw(
         mandelbrotCanvas,
-        cx,
-        cy,
-        scale,
-      )
-
-      // 対応するジュリア集合を再描画
-      loadJulia(
         juliaCanvas,
-        0.0,
-        0.0,
-        cx,
-        cy,
-        scale,
+        Number(cxInput.value),
+        Number(cyInput.value),
+        Number(scaleInput.value),
       )
 
     }

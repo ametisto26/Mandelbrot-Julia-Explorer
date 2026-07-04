@@ -1,7 +1,4 @@
-import {
-  loadJulia,
-  loadMandelbrot,
-} from "./render"
+import { redraw } from "./redraw"
 
 export function setupZoom(
   mandelbrotCanvas: HTMLCanvasElement,
@@ -77,22 +74,12 @@ export function setupZoom(
       scaleInput.value =
         String(newScale)
 
-      // マンデルブロ集合を再描画
-      loadMandelbrot(
+      redraw(
         mandelbrotCanvas,
-        newCx,
-        newCy,
-        newScale,
-      )
-
-      // 対応するジュリア集合を再描画
-      loadJulia(
         juliaCanvas,
-        0.0,
-        0.0,
-        newCx,
-        newCy,
-        newScale,
+        Number(cxInput.value),
+        Number(cyInput.value),
+        Number(scaleInput.value),
       )
 
     },

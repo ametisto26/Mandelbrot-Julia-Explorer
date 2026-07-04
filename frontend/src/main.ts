@@ -2,6 +2,7 @@ import { loadMandelbrot, loadJulia } from "./render"
 import { setupDrag } from "./drag"
 import { setupZoom } from "./zoom"
 import { setupDraw } from "./draw"
+import { redraw } from "./redraw"
 
 // ====================
 // UIの生成
@@ -108,22 +109,9 @@ const initialMandelbrot = {
   scale: 1,
 }
 
-const initialJulia = {
-  viewCx: 0.0,
-  viewCy: 0.0,
-}
-
-loadMandelbrot(
+redraw(
   mandelbrotCanvas,
-  initialMandelbrot.cx,
-  initialMandelbrot.cy,
-  initialMandelbrot.scale,
-)
-
-loadJulia(
   juliaCanvas,
-  initialJulia.viewCx,
-  initialJulia.viewCy,
   initialMandelbrot.cx,
   initialMandelbrot.cy,
   initialMandelbrot.scale,

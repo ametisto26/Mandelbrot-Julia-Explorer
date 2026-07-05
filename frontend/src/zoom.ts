@@ -1,11 +1,18 @@
 import { redraw } from "./redraw"
 
+import type {
+  MandelbrotState,
+  JuliaState,
+} from "./redraw"
+
 export function setupZoom(
   mandelbrotCanvas: HTMLCanvasElement,
   juliaCanvas: HTMLCanvasElement,
   cxInput: HTMLInputElement,
   cyInput: HTMLInputElement,
   scaleInput: HTMLInputElement,
+  mandelbrotState: MandelbrotState,
+  juliaState: JuliaState,
 ) {
 
   mandelbrotCanvas.addEventListener(
@@ -15,7 +22,7 @@ export function setupZoom(
       event.preventDefault()
 
       const oldScale =
-        Number(scaleInput.value)
+        mandelbrotState.scale
 
       const newScale =
         event.deltaY < 0
@@ -38,11 +45,11 @@ export function setupZoom(
         3.0 / oldScale
 
       const xmin =
-        Number(cxInput.value)
+        mandelbrotState.cx
         - viewWidth / 2
 
       const ymin =
-        Number(cyInput.value)
+        mandelbrotState.cy
         - viewHeight / 2
 
       const mouseCx =
@@ -57,35 +64,38 @@ export function setupZoom(
       const newViewHeight =
         3.0 / newScale
 
-      const newCx =
+      mandelbrotState.cx =
         mouseCx
         - (x - 0.5) * newViewWidth
 
-      const newCy =
+      mandelbrotState.cy =
         mouseCy
         - (y - 0.5) * newViewHeight
 
+      mandelbrotState.scale =
+        newScale
+
+      // 入力欄を更新
       cxInput.value =
-        String(newCx)
+        String(mandelbrotState.cx)
 
       cyInput.value =
-        String(newCy)
+        String(mandelbrotState.cy)
 
       scaleInput.value =
-        String(newScale)
+        String(mandelbrotState.scale)
 
       redraw(
         mandelbrotCanvas,
         juliaCanvas,
-        Number(cxInput.value),
-        Number(cyInput.value),
-        Number(scaleInput.value),
+        mandelbrotState,
+        juliaState,
       )
 
     },
     {
       passive: false,
-    }
+    },
   )
 
 }

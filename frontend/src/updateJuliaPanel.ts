@@ -1,20 +1,25 @@
+import type { JuliaState, MandelbrotState } from "./redraw"
+
 export function updateInfo(
-  viewCx: number,
-  viewCy: number,
-  cr: number,
-  ci: number,
-  scale: number,
+  mandelbrotState: MandelbrotState,
+  juliaState: JuliaState,
 ) {
 
-  document.querySelector("#julia-c")!.textContent =
-    `${cr.toFixed(9)} + ${ci.toFixed(9)}i`
+  // Julia parameter
+  document.querySelector("#julia-re")!.textContent =
+    mandelbrotState.cx.toFixed(9)
 
+  document.querySelector("#julia-im")!.textContent =
+    mandelbrotState.cy.toFixed(9)
+
+  // Julia view center
   document.querySelector("#view-re")!.textContent =
-    viewCx.toFixed(9)
+    juliaState.viewCx.toFixed(9)
 
   document.querySelector("#view-im")!.textContent =
-    viewCy.toFixed(9)
+    juliaState.viewCy.toFixed(9)
 
+  // Julia scale
   document.querySelector("#view-scale")!.textContent =
-    `${scale.toFixed(2)}×`
+    `${juliaState.scale.toFixed(2)}×`
 }

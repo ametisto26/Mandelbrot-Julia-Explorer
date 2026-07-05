@@ -1,8 +1,10 @@
 import "../style.css"
+
 import { setupDrag } from "./drag"
 import { setupZoom } from "./zoom"
 import { setupDraw } from "./draw"
 import { redraw } from "./redraw"
+import type { MandelbrotState, JuliaState } from "./redraw"
 
 // ====================
 // UIの生成
@@ -44,59 +46,51 @@ app.innerHTML = `
     </section>
 
     <section class="panel">
+
       <h2>Julia Set</h2>
 
       <h3>Julia parameter</h3>
 
       <div class="row">
-        <span>c =</span>
-        <span id="julia-c">
-          -0.75 + 0.10i
-        </span>
+        <span>Re(c):</span>
+        <span id="julia-re">-0.75</span>
+      </div>
+
+      <div class="row">
+        <span>Im(c):</span>
+        <span id="julia-im">0.10</span>
       </div>
 
       <h3>View center</h3>
 
       <div class="row">
         <span>Re(z):</span>
-        <span id="view-re">
-          0.0
-        </span>
+        <span id="view-re">0.0</span>
       </div>
 
       <div class="row">
         <span>Im(z):</span>
-        <span id="view-im">
-          0.0
-        </span>
+        <span id="view-im">0.0</span>
       </div>
 
       <div class="row">
         <span>Scale:</span>
-        <span id="view-scale">
-          1×
-        </span>
+        <span id="view-scale">1×</span>
       </div>
 
       <div class="row">
         <span>Render:</span>
-        <span id="render-time">
-          --
-        </span>
+        <span id="render-time">--</span>
       </div>
 
       <div class="row">
         <span>Resolution:</span>
-        <span id="resolution">
-          --
-        </span>
+        <span id="resolution">--</span>
       </div>
 
       <div class="row">
         <span>Iterations:</span>
-        <span id="iterations">
-          --
-        </span>
+        <span id="iterations">--</span>
       </div>
 
     </section>
@@ -139,6 +133,22 @@ const juliaCanvas =
   document.querySelector<HTMLCanvasElement>("#julia")!
 
 // ====================
+// 状態
+// ====================
+
+const mandelbrotState: MandelbrotState = {
+  cx: -0.75,
+  cy: 0.1,
+  scale: 1,
+}
+
+const juliaState: JuliaState = {
+  viewCx: 0.0,
+  viewCy: 0.0,
+  scale: 1,
+}
+
+// ====================
 // ユーザー操作を登録
 // ====================
 
@@ -149,6 +159,8 @@ setupDrag(
   cxInput,
   cyInput,
   scaleInput,
+  mandelbrotState,
+  juliaState,
 )
 
 // ホイールによるズーム
@@ -158,6 +170,8 @@ setupZoom(
   cxInput,
   cyInput,
   scaleInput,
+  mandelbrotState,
+  juliaState,
 )
 
 // Drawボタンによる再描画
@@ -165,6 +179,8 @@ setupDraw(
   drawButton,
   mandelbrotCanvas,
   juliaCanvas,
+  mandelbrotState,
+  juliaState,
   cxInput,
   cyInput,
   scaleInput,
@@ -174,18 +190,9 @@ setupDraw(
 // 初期表示
 // ====================
 
-const initialMandelbrot = {
-  cx: -0.75,
-  cy: 0.1,
-  scale: 1,
-}
-
-// 初期状態でマンデルブロ集合と
-// 対応するジュリア集合を描画
 redraw(
   mandelbrotCanvas,
   juliaCanvas,
-  initialMandelbrot.cx,
-  initialMandelbrot.cy,
-  initialMandelbrot.scale,
+  mandelbrotState,
+  juliaState,
 )

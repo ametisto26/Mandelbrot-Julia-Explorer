@@ -1,11 +1,18 @@
 import { redraw } from "./redraw"
 
+import type {
+  MandelbrotState,
+  JuliaState,
+} from "./redraw"
+
 export function setupDrag(
   mandelbrotCanvas: HTMLCanvasElement,
   juliaCanvas: HTMLCanvasElement,
   cxInput: HTMLInputElement,
   cyInput: HTMLInputElement,
   scaleInput: HTMLInputElement,
+  mandelbrotState: MandelbrotState,
+  juliaState: JuliaState,
 ) {
 
   let dragging = false
@@ -22,7 +29,7 @@ export function setupDrag(
       lastX = event.offsetX
       lastY = event.offsetY
 
-    }
+    },
   )
 
   mandelbrotCanvas.addEventListener(
@@ -38,12 +45,11 @@ export function setupDrag(
       redraw(
         mandelbrotCanvas,
         juliaCanvas,
-        Number(cxInput.value),
-        Number(cyInput.value),
-        Number(scaleInput.value),
+        mandelbrotState,
+        juliaState,
       )
 
-    }
+    },
   )
 
   mandelbrotCanvas.addEventListener(
@@ -52,7 +58,7 @@ export function setupDrag(
 
       dragging = false
 
-    }
+    },
   )
 
   mandelbrotCanvas.addEventListener(
@@ -72,25 +78,28 @@ export function setupDrag(
       lastX = event.offsetX
       lastY = event.offsetY
 
-      const scale =
-        Number(scaleInput.value)
-
       const width =
-        3.0 / scale
+        3.0 / mandelbrotState.scale
 
       const height =
-        3.0 / scale
+        3.0 / mandelbrotState.scale
 
-      cxInput.value = String(
-        Number(cxInput.value)
-        - dx / mandelbrotCanvas.width * width
-      )
+      mandelbrotState.cx -=
+        dx / mandelbrotCanvas.width * width
 
-      cyInput.value = String(
-        Number(cyInput.value)
-        + dy / mandelbrotCanvas.height * height
-      )
+      mandelbrotState.cy +=
+        dy / mandelbrotCanvas.height * height
 
-    }
+      // 入力欄も更新
+      cxInput.value =
+        String(mandelbrotState.cx)
+
+      cyInput.value =
+        String(mandelbrotState.cy)
+
+      scaleInput.value =
+        String(mandelbrotState.scale)
+
+    },
   )
 }

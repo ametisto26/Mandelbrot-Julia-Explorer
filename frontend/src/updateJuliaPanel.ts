@@ -20,6 +20,10 @@ export function updateInfo(
     juliaState.viewCy.toFixed(9)
 
   // Julia scale
-  document.querySelector("#view-scale")!.textContent =
-    `${juliaState.scale.toFixed(2)}×`
+  const juliaScaleInput =
+    document.querySelector<HTMLInputElement>("#julia-scale")!
+
+  juliaScaleInput.value =
+    juliaState.scale.toFixed(2)
+
 }

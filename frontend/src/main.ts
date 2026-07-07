@@ -79,7 +79,10 @@ app.innerHTML = `
 
       <div class="row">
         <span>Scale:</span>
-        <span id="view-scale">1×</span>
+        <input
+          id="julia-scale"
+          value="1"
+        >
       </div>
 
       <div class="row">
@@ -96,6 +99,12 @@ app.innerHTML = `
         <span>Iterations:</span>
         <span id="iterations">--</span>
       </div>
+
+      <button id="julia-home">
+          Home
+      </button>
+
+      <input id="julia-scale" value="1">
 
     </section>
 
@@ -135,6 +144,9 @@ const mandelbrotCanvas =
 
 const juliaCanvas =
   document.querySelector<HTMLCanvasElement>("#julia")!
+
+const juliaHomeButton =
+  document.querySelector<HTMLButtonElement>("#julia-home")!
 
 // ====================
 // 状態
@@ -200,8 +212,23 @@ setupJuliaZoom(
   juliaState,
 )
 
+// Julia集合の表示初期化
+juliaHomeButton.addEventListener("click", () => {
+
+    juliaState.viewCx = 0.0
+    juliaState.viewCy = 0.0
+    juliaState.scale  = 1.0
+
+    redraw(
+        mandelbrotCanvas,
+        juliaCanvas,
+        mandelbrotState,
+        juliaState,
+    )
+})
+
 // ----------
-// 共通
+// 共通操作
 // ----------
 // Drawボタンによる再描画
 setupDraw(

@@ -2,6 +2,10 @@ import "../style.css"
 
 import { setupDrag } from "./drag"
 import { setupZoom } from "./zoom"
+
+import { setupJuliaDrag } from "./dragJulia"
+import { setupJuliaZoom } from "./zoomJulia"
+
 import { setupDraw } from "./draw"
 import { redraw } from "./redraw"
 import type { MandelbrotState, JuliaState } from "./redraw"
@@ -152,6 +156,9 @@ const juliaState: JuliaState = {
 // ユーザー操作を登録
 // ====================
 
+// ----------
+// Mandelbrot側
+// ----------
 // ドラッグによる平行移動
 setupDrag(
   mandelbrotCanvas,
@@ -174,6 +181,28 @@ setupZoom(
   juliaState,
 )
 
+// ----------
+// Julia側
+// ----------
+// ドラッグによる平行移動
+setupJuliaDrag(
+  mandelbrotCanvas,
+  juliaCanvas,
+  mandelbrotState,
+  juliaState,
+)
+
+// ホイールによるズーム
+setupJuliaZoom(
+  mandelbrotCanvas,
+  juliaCanvas,
+  mandelbrotState,
+  juliaState,
+)
+
+// ----------
+// 共通
+// ----------
 // Drawボタンによる再描画
 setupDraw(
   drawButton,

@@ -20,7 +20,12 @@ The project combines a FastAPI backend for high-performance numerical computatio
 
 ### Initial View
 
-![Initial View](images/initial_view.png)
+<div align="center">
+
+<img src="images/mandelbrot_-0.7500000000_0.1000000000_m1.png" width="48%">
+<img src="images/julia_-0.7500000000_0.1000000000_j1.png" width="48%">
+
+</div>
 
 The initial view displays the Mandelbrot parameter plane together with the corresponding Julia set.
 

@@ -60,9 +60,14 @@ Scale
 
 ### Favorite Region 1
 
-![Favorite Region](images/favorite_region1.png)
+<div align="center">
 
-主カーディオイド近傍を拡大した例です。対応するジュリア集合では，対称性を保ちながら渦巻くフィラメント構造が形成されます。
+<img src="images/mandelbrot_-0.740000_0.180000_m4.png" width="48%">
+<img src="images/julia_-0.740000_0.180000_j1.png" width="48%">
+
+</div>
+
+主カージオイド近傍を拡大した例です。対応するジュリア集合では，対称性を保ちながら渦巻くフィラメント構造が形成されます。
 
 A zoomed view near the main cardioid of the Mandelbrot set. The corresponding Julia set reveals a pair of symmetric spiral structures connected by delicate filamentary patterns, demonstrating the close relationship between the parameter plane and the dynamical plane.
 
@@ -93,7 +98,12 @@ Scale
 
 ### Favorite Region 2
 
-![Favorite Region](images/favorite_region2.png)
+<div align="center">
+
+<img src="images/mandelbrot_-0.7436438870_0.1318259040_m128.png" width="48%">
+<img src="images/julia_-0.7436438870_0.1318259040_j128.png" width="48%">
+
+</div>
 
 マンデルブロ集合の境界付近を128倍まで拡大した領域です。境界には自己相似なフィラメント構造が密集しており，対応するジュリア集合では渦状の枝分かれと島状の構造が画面全体に現れます。このような複雑な幾何学模様は，マンデルブロ集合とジュリア集合の対応関係を特徴づける代表的な例です。
 
@@ -126,7 +136,12 @@ Scale
 
 ### Favorite Region 3
 
-![Favorite Region](images/favorite_region3.png)
+<div align="center">
+
+<img src="images/mandelbrot_-0.7615740000_0.0847596000_m256.png" width="48%">
+<img src="images/julia_-0.7615740000_0.0847596000_j1.png" width="48%">
+
+</div>
 
 マンデルブロ集合の境界に現れる渦巻き状の自己相似構造を拡大した領域です。
 
@@ -163,7 +178,12 @@ Scale
 
 ### Favorite Region 4
 
-![Favorite Region](images/favorite_region4.png)
+<div align="center">
+
+<img src="images/mandelbrot_-1.4011550000_0.0000000000_m1024.png" width="48%">
+<img src="images/julia_-1.4011550000_0.0000000000_j32.png" width="48%">
+
+</div>
 
 マンデルブロ集合の実軸付近を高倍率で拡大した領域です。
 
@@ -200,7 +220,12 @@ Scale
 
 ### Favorite Region 5
 
-![Favorite Region](images/favorite_region5.png)
+<div align="center">
+
+<img src="images/mandelbrot_-0.4210000000_0.5800000000_m128.png" width="48%">
+<img src="images/julia_-0.4210000000_0.5800000000_j4.png" width="48%">
+
+</div>
 
 マンデルブロ集合の境界付近に現れる多数のミニ・マンデルブロと渦状構造を拡大した領域です。
 
@@ -245,6 +270,10 @@ Scale
 - Independent navigation of the Julia set
 - Mouse drag for panning
 - Mouse wheel zoom
+- Keyboard shortcut (`S`) for exporting images
+- Individual export of Mandelbrot and Julia views
+- Combined side-by-side image export
+- Automatic filenames including parameter values and zoom levels
 - FastAPI backend
 - TypeScript frontend
 - HTML Canvas rendering
@@ -260,6 +289,34 @@ Scale
 - High-resolution image export
 - Animation along parameter paths
 - Orbit visualization
+
+---
+
+## Image Export
+
+Press **`S`** to save the current visualization.
+
+The application automatically exports three PNG images:
+
+- `mandelbrot_*.png`
+- `julia_*.png`
+- `mandelbrot_julia_*.png`
+
+Each filename automatically includes
+
+- the selected complex parameter `(Re(c), Im(c))`
+- the Mandelbrot zoom level
+- the Julia zoom level
+
+For example,
+
+```text
+mandelbrot_-0.743644_0.131826_m128_j32.png
+julia_-0.743644_0.131826_m128_j32.png
+mandelbrot_julia_-0.743644_0.131826_m128_j32.png
+```
+
+This makes it easy to organize and reproduce interesting parameter locations.
 
 ---
 

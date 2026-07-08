@@ -431,7 +431,7 @@ This application visualizes two different complex planes.
 The Mandelbrot set consists of complex parameters c for which the orbit
 
 ```math
-z\_{n+1}=z_n^2+c,\qquad z_0=0
+z_{n+1}=z_n^2+c,\qquad z_0=0
 ```
 
 remains bounded.
@@ -443,7 +443,7 @@ The left panel displays a region of this parameter plane.
 For a fixed parameter c, the Julia set is obtained by iterating
 
 ```math
-z\_{n+1}=z_n^2+c
+z_{n+1}=z_n^2+c
 ```
 
 for different initial values z.

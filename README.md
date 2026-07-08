@@ -58,13 +58,13 @@ Scale
 
 ---
 
-### Favorite Region
+### Favorite Region 1
 
 ![Favorite Region](images/favorite_region1.png)
 
-A moderately magnified region showing filament structures near the boundary of the Mandelbrot set.
+主カーディオイド近傍を拡大した例です。対応するジュリア集合では，対称性を保ちながら渦巻くフィラメント構造が形成されます。
 
-The Julia panel is updated automatically to visualize the dynamics associated with the current parameter.
+A zoomed view near the main cardioid of the Mandelbrot set. The corresponding Julia set reveals a pair of symmetric spiral structures connected by delicate filamentary patterns, demonstrating the close relationship between the parameter plane and the dynamical plane.
 
 ### Mandelbrot Set
 
@@ -91,11 +91,13 @@ Scale
 2×
 ```
 
+### Favorite Region 2
+
 ![Favorite Region](images/favorite_region2.png)
 
-A highly magnified region exhibiting intricate self-similar structures.
+マンデルブロ集合の境界付近を128倍まで拡大した領域です。境界には自己相似なフィラメント構造が密集しており，対応するジュリア集合では渦状の枝分かれと島状の構造が画面全体に現れます。このような複雑な幾何学模様は，マンデルブロ集合とジュリア集合の対応関係を特徴づける代表的な例です。
 
-The Julia view can be navigated independently using drag and zoom operations while keeping the selected parameter fixed.
+A 128× magnification near the boundary of the Mandelbrot set. The parameter plane exhibits densely packed self-similar filaments, while the corresponding Julia set develops intricate spiral branches and disconnected island-like structures throughout the dynamical plane. This region illustrates the rich geometric correspondence between the Mandelbrot set and its associated Julia set.
 
 ### Mandelbrot Set
 
@@ -120,6 +122,117 @@ Im(z) = 0.00
 
 Scale
 128×
+```
+
+### Favorite Region 3
+
+![Favorite Region](images/favorite_region3.png)
+
+マンデルブロ集合の境界に現れる渦巻き状の自己相似構造を拡大した領域です。
+
+対応するジュリア集合では，対称性の高い大きな渦が形成され，マンデルブロ集合上のわずかなパラメータの変化が，力学系全体の形状に大きな影響を与えることが分かります。
+
+A magnified view of a region where spiral-shaped self-similar structures emerge along the boundary of the Mandelbrot set.
+
+The corresponding Julia set exhibits large symmetric spiral patterns, illustrating how a small change in the parameter on the Mandelbrot set produces a dramatically different global dynamical structure.
+
+### Mandelbrot Set
+
+```text
+View center
+Re(z) = -0.761574
+Im(z) = 0.0847596
+
+Scale
+256×
+```
+
+### Julia Set
+
+```text
+Parameter
+c = -0.761574 + 0.0847596i
+
+View center
+Re(z) = 0.00
+Im(z) = 0.00
+
+Scale
+1×
+```
+
+### Favorite Region 4
+
+![Favorite Region](images/favorite_region4.png)
+
+マンデルブロ集合の実軸付近を高倍率で拡大した領域です。
+
+対応するジュリア集合では，これまでの渦巻き状の構造とは異なり，十字状の対称性を持つ樹状のフラクタルが現れます。同じ二次写像であっても，パラメータの違いによって力学系の幾何学的特徴が大きく変化することが分かります。
+
+A highly magnified view near the real axis of the Mandelbrot set.
+
+Unlike the previous examples, the corresponding Julia set develops a dendritic fractal with striking cross-shaped symmetry instead of spiral structures. This illustrates how subtle changes in the parameter can produce dramatically different geometries in the associated dynamical system.
+
+### Mandelbrot Set
+
+```text
+View center
+Re(z) = -1.401155
+Im(z) = 0.0
+
+Scale
+1024×
+```
+
+### Julia Set
+
+```text
+Parameter
+c = -1.401155 + 0.0i
+
+View center
+Re(z) = 0.00
+Im(z) = 0.00
+
+Scale
+32×
+```
+
+### Favorite Region 5
+
+![Favorite Region](images/favorite_region5.png)
+
+マンデルブロ集合の境界付近に現れる多数のミニ・マンデルブロと渦状構造を拡大した領域です。
+
+対応するジュリア集合では，自己相似なロゼット状の構造が平面全体に広がり，花が咲き並ぶような幾何学模様が現れます。同じ二次写像から，パラメータの選び方によってこれほど多様な形状が生まれることを示す一例です。
+
+A magnified region near the boundary of the Mandelbrot set containing numerous mini-Mandelbrot copies and spiral structures.
+
+The corresponding Julia set is filled with self-similar rosette-like patterns that resemble a field of blooming flowers. This example highlights the remarkable diversity of geometries that can arise from the same quadratic map by varying only the complex parameter.
+
+### Mandelbrot Set
+
+```text
+View center
+Re(z) = -0.421
+Im(z) = 0.58
+
+Scale
+128×
+```
+
+### Julia Set
+
+```text
+Parameter
+c = -0.421 + 0.58i
+
+View center
+Re(z) = 0.00
+Im(z) = 0.00
+
+Scale
+4×
 ```
 
 ---

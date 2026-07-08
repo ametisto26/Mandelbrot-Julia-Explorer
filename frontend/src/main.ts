@@ -274,7 +274,7 @@ window.addEventListener("keydown", (event) => {
   if (event.key === "s" || event.key === "S") {
 
     const parameter =
-        `${mandelbrotState.cx.toFixed(6)}_${mandelbrotState.cy.toFixed(6)}`
+        `${mandelbrotState.cx.toFixed(10)}_${mandelbrotState.cy.toFixed(10)}`
 
     const mandelbrotZoom =
         `m${mandelbrotState.scale.toFixed(0)}`

@@ -10,6 +10,7 @@ export function setupDraw(
   cxInput: HTMLInputElement,
   cyInput: HTMLInputElement,
   scaleInput: HTMLInputElement,
+  juliaScaleInput: HTMLInputElement,
 ) {
 
   drawButton.addEventListener(
@@ -24,6 +25,9 @@ export function setupDraw(
 
       mandelbrotState.scale =
         Number(scaleInput.value)
+
+      juliaState.scale =
+        Number(juliaScaleInput.value)
 
       redraw(
         mandelbrotCanvas,

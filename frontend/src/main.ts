@@ -104,8 +104,6 @@ app.innerHTML = `
           Home
       </button>
 
-      <input id="julia-scale" value="1">
-
     </section>
 
   </div>
@@ -147,6 +145,9 @@ const juliaCanvas =
 
 const juliaHomeButton =
   document.querySelector<HTMLButtonElement>("#julia-home")!
+
+const juliaScaleInput =
+  document.querySelector<HTMLInputElement>("#julia-scale")!
 
 // ====================
 // 状態
@@ -240,6 +241,7 @@ setupDraw(
   cxInput,
   cyInput,
   scaleInput,
+  juliaScaleInput,
 )
 
 // ====================

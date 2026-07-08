@@ -22,12 +22,35 @@ The project combines a FastAPI backend for high-performance numerical computatio
 
 ![Initial View](images/initial_view.png)
 
-The initial view shows the Mandelbrot set together with the corresponding Julia set.
+The initial view displays the Mandelbrot parameter plane together with the corresponding Julia set.
+
+The interface shows:
+
+- Mandelbrot view center and zoom level
+- Julia parameter \(c\)
+- Julia view center and zoom level
+- Rendering statistics (render time, resolution, iterations)
+
+### Mandelbrot Set
 
 ```text
 View center
 Re(z) = -0.75
-Im(z) = 0.1
+Im(z) = 0.10
+
+Scale
+1×
+```
+
+### Julia Set
+
+```text
+Parameter
+c = -0.75 + 0.10i
+
+View center
+Re(z) = 0.00
+Im(z) = 0.00
 
 Scale
 1×
@@ -39,7 +62,11 @@ Scale
 
 ![Favorite Region](images/favorite_region1.png)
 
-A moderately magnified region showing filament structures.
+A moderately magnified region showing filament structures near the boundary of the Mandelbrot set.
+
+The Julia panel is updated automatically to visualize the dynamics associated with the current parameter.
+
+### Mandelbrot Set
 
 ```text
 View center
@@ -50,9 +77,27 @@ Scale
 2×
 ```
 
+### Julia Set
+
+```text
+Parameter
+c = -0.74 + 0.18i
+
+View center
+Re(z) = 0.00
+Im(z) = 0.00
+
+Scale
+1×
+```
+
 ![Favorite Region](images/favorite_region2.png)
 
 A highly magnified region exhibiting intricate self-similar structures.
+
+The Julia view can be navigated independently using drag and zoom operations while keeping the selected parameter fixed.
+
+### Mandelbrot Set
 
 ```text
 View center
@@ -63,6 +108,20 @@ Scale
 128×
 ```
 
+### Julia Set
+
+```text
+Parameter
+c = -0.743643887 + 0.131825904i
+
+View center
+Re(z) = 0.00
+Im(z) = 0.00
+
+Scale
+1×
+```
+
 ---
 
 ## Features
@@ -70,21 +129,19 @@ Scale
 ### Implemented
 
 - Real-time correspondence between the Mandelbrot set and Julia sets
-- Interactive Mandelbrot set viewer
-- Corresponding Julia set visualization
+- Independent navigation of the Julia set
+- Mouse drag for panning
+- Mouse wheel zoom
 - FastAPI backend
 - TypeScript frontend
 - HTML Canvas rendering
 - Numba-accelerated computation
-- Mouse drag for panning
-- Mouse wheel zoom
 - Smooth coloring
 - 2×2 supersampling
 
 ### Planned
 
 - Click on the Mandelbrot set to change the Julia parameter
-- Independent navigation of the Julia set
 - Multiple color maps
 - Favorite locations
 - High-resolution image export
@@ -110,6 +167,8 @@ Mandelbrot-Julia-Explorer/
 │   │   ├── drag.ts
 │   │   ├── zoom.ts
 │   │   ├── draw.ts
+│   │   ├── dragJulia.ts
+│   │   ├── zoomJulia.ts
 │   │   ├── updateJuliaPanel.ts
 │   │   └── colormap.ts
 │   │

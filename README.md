@@ -74,7 +74,7 @@ Re(z) = -0.74
 Im(z) = 0.18
 
 Scale
-2×
+4×
 ```
 
 ### Julia Set
@@ -88,7 +88,7 @@ Re(z) = 0.00
 Im(z) = 0.00
 
 Scale
-2×
+1×
 ```
 
 ### Favorite Region 2

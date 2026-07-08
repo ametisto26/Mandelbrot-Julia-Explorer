@@ -8,6 +8,8 @@ import { setupJuliaZoom } from "./zoomJulia"
 
 import { setupDraw } from "./draw"
 import { redraw } from "./redraw"
+import { saveCanvas, saveCombinedCanvas } from "./saveCanvas"
+
 import type { MandelbrotState, JuliaState } from "./redraw"
 
 // ====================
@@ -243,6 +245,69 @@ setupDraw(
   scaleInput,
   juliaScaleInput,
 )
+
+// Sキー押下による画像保存
+window.addEventListener("keydown", (event) => {
+
+  // 入力欄にフォーカス中は無効
+  const target = event.target as HTMLElement
+
+  if (
+    target instanceof HTMLInputElement ||
+    target instanceof HTMLTextAreaElement
+  ) {
+    return
+  }
+
+  // Sキー以外は無視
+  if (
+    event.key !== "s" &&
+    event.key !== "S"
+  ) {
+    return
+  }
+
+  // ブラウザの「名前を付けて保存」を防ぐ
+  event.preventDefault()
+
+  // Sキーで保存
+  if (event.key === "s" || event.key === "S") {
+
+    const parameter =
+        `${mandelbrotState.cx.toFixed(6)}_${mandelbrotState.cy.toFixed(6)}`
+
+    const mandelbrotZoom =
+        `m${mandelbrotState.scale.toFixed(0)}`
+
+    const juliaZoom =
+        `j${juliaState.scale.toFixed(0)}`
+
+    const mandelbrotName =
+        `mandelbrot_${parameter}_${mandelbrotZoom}.png`
+
+    const juliaName =
+        `julia_${parameter}_${juliaZoom}.png`
+
+    const combinedName =
+        `mandelbrot_julia_${parameter}_${mandelbrotZoom}_${juliaZoom}.png`
+
+    saveCanvas(
+      mandelbrotCanvas,
+      mandelbrotName,
+    )
+
+    saveCanvas(
+      juliaCanvas,
+      juliaName,
+    )
+
+    saveCombinedCanvas(
+      mandelbrotCanvas,
+      juliaCanvas,
+      combinedName,
+    )
+  }
+})
 
 // ====================
 // 初期表示

@@ -88,7 +88,7 @@ Re(z) = 0.00
 Im(z) = 0.00
 
 Scale
-1×
+2×
 ```
 
 ![Favorite Region](images/favorite_region2.png)
@@ -119,7 +119,7 @@ Re(z) = 0.00
 Im(z) = 0.00
 
 Scale
-1×
+128×
 ```
 
 ---

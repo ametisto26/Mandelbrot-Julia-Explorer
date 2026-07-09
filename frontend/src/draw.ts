@@ -10,6 +10,8 @@ export function setupDraw(
   cxInput: HTMLInputElement,
   cyInput: HTMLInputElement,
   scaleInput: HTMLInputElement,
+  juliaCxInput: HTMLInputElement,
+  juliaCyInput: HTMLInputElement,
   juliaScaleInput: HTMLInputElement,
 ) {
 
@@ -25,6 +27,12 @@ export function setupDraw(
 
       mandelbrotState.scale =
         Number(scaleInput.value)
+
+      juliaState.viewCx =
+        Number(juliaCxInput.value)
+
+      juliaState.viewCy =
+        Number(juliaCyInput.value)
 
       juliaState.scale =
         Number(juliaScaleInput.value)

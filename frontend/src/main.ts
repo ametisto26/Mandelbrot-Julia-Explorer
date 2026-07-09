@@ -71,12 +71,12 @@ app.innerHTML = `
 
       <div class="row">
         <span>Re(z):</span>
-        <span id="view-re">0.0</span>
+        <input id="julia-cx" value="0.0">
       </div>
 
       <div class="row">
         <span>Im(z):</span>
-        <span id="view-im">0.0</span>
+        <input id="julia-cy" value="0.0">
       </div>
 
       <div class="row">
@@ -147,6 +147,12 @@ const juliaCanvas =
 
 const juliaHomeButton =
   document.querySelector<HTMLButtonElement>("#julia-home")!
+
+const juliaCxInput = 
+  document.querySelector<HTMLInputElement>("#julia-cx")!
+
+const juliaCyInput = 
+  document.querySelector<HTMLInputElement>("#julia-cy")!
 
 const juliaScaleInput =
   document.querySelector<HTMLInputElement>("#julia-scale")!
@@ -222,6 +228,10 @@ juliaHomeButton.addEventListener("click", () => {
     juliaState.viewCy = 0.0
     juliaState.scale  = 1.0
 
+    juliaCxInput.value = "0.0"
+    juliaCyInput.value = "0.0"
+    juliaScaleInput.value = "1"
+
     redraw(
         mandelbrotCanvas,
         juliaCanvas,
@@ -243,6 +253,8 @@ setupDraw(
   cxInput,
   cyInput,
   scaleInput,
+  juliaCxInput,
+  juliaCyInput,
   juliaScaleInput,
 )
 
@@ -271,42 +283,39 @@ window.addEventListener("keydown", (event) => {
   event.preventDefault()
 
   // Sキーで保存
-  if (event.key === "s" || event.key === "S") {
+  const parameter =
+      `${mandelbrotState.cx.toFixed(10)}_${mandelbrotState.cy.toFixed(10)}`
 
-    const parameter =
-        `${mandelbrotState.cx.toFixed(10)}_${mandelbrotState.cy.toFixed(10)}`
+  const mandelbrotZoom =
+      `m${mandelbrotState.scale.toFixed(0)}`
 
-    const mandelbrotZoom =
-        `m${mandelbrotState.scale.toFixed(0)}`
+  const juliaZoom =
+      `j${juliaState.scale.toFixed(0)}`
 
-    const juliaZoom =
-        `j${juliaState.scale.toFixed(0)}`
+  const mandelbrotName =
+      `mandelbrot_${parameter}_${mandelbrotZoom}.png`
 
-    const mandelbrotName =
-        `mandelbrot_${parameter}_${mandelbrotZoom}.png`
+  const juliaName =
+      `julia_${parameter}_${juliaZoom}.png`
 
-    const juliaName =
-        `julia_${parameter}_${juliaZoom}.png`
+  const combinedName =
+      `mandelbrot_julia_${parameter}_${mandelbrotZoom}_${juliaZoom}.png`
 
-    const combinedName =
-        `mandelbrot_julia_${parameter}_${mandelbrotZoom}_${juliaZoom}.png`
+  saveCanvas(
+    mandelbrotCanvas,
+    mandelbrotName,
+  )
 
-    saveCanvas(
-      mandelbrotCanvas,
-      mandelbrotName,
-    )
+  saveCanvas(
+    juliaCanvas,
+    juliaName,
+  )
 
-    saveCanvas(
-      juliaCanvas,
-      juliaName,
-    )
-
-    saveCombinedCanvas(
-      mandelbrotCanvas,
-      juliaCanvas,
-      combinedName,
-    )
-  }
+  saveCombinedCanvas(
+    mandelbrotCanvas,
+    juliaCanvas,
+    combinedName,
+  )
 })
 
 // ====================

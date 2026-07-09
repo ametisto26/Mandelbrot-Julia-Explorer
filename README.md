@@ -106,7 +106,7 @@ Scale
 <div align="center">
 
 <img src="images/mandelbrot_-0.7436438870_0.1318259040_m128.png" width="48%">
-<img src="images/julia_-0.7436438870_0.1318259040_j128.png" width="48%">
+<img src="images/julia_-0.7436438870_0.1318259040_j1.png" width="48%">
 
 </div>
 
@@ -136,7 +136,7 @@ Re(z) = 0.00
 Im(z) = 0.00
 
 Scale
-128×
+1×
 ```
 
 ### Favorite Region 3
@@ -431,7 +431,7 @@ This application visualizes two different complex planes.
 The Mandelbrot set consists of complex parameters c for which the orbit
 
 ```math
-z_{n+1}=z_n^2+c,\qquad z_0=0
+z_{n+1}=z_n^2+c,\quad z_0=0
 ```
 
 remains bounded.

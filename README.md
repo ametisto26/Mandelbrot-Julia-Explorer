@@ -316,8 +316,8 @@ Each filename automatically includes
 For example,
 
 ```text
-mandelbrot_-0.743644_0.131826_m128_j32.png
-julia_-0.743644_0.131826_m128_j32.png
+mandelbrot_c-0.743644_0.131826_m128_j32.png
+julia_c-0.743644_0.131826_v0.000000_0.000000_m128_j32.png
 mandelbrot_julia_-0.743644_0.131826_m128_j32.png
 ```
 
@@ -345,6 +345,7 @@ Mandelbrot-Julia-Explorer/
 │   │   ├── dragJulia.ts
 │   │   ├── zoomJulia.ts
 │   │   ├── updateJuliaPanel.ts
+│   │   ├── saveCanvas.ts
 │   │   └── colormap.ts
 │   │
 │   ├── index.html

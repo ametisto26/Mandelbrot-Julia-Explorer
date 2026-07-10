@@ -284,7 +284,10 @@ window.addEventListener("keydown", (event) => {
 
   // Sキーで保存
   const parameter =
-      `${mandelbrotState.cx.toFixed(10)}_${mandelbrotState.cy.toFixed(10)}`
+      `c${mandelbrotState.cx.toFixed(10)}_${mandelbrotState.cy.toFixed(10)}`
+
+  const juliaView =
+      `v${mandelbrotState.cx.toFixed(10)}_${mandelbrotState.cy.toFixed(10)}`
 
   const mandelbrotZoom =
       `m${mandelbrotState.scale.toFixed(0)}`
@@ -296,10 +299,10 @@ window.addEventListener("keydown", (event) => {
       `mandelbrot_${parameter}_${mandelbrotZoom}.png`
 
   const juliaName =
-      `julia_${parameter}_${juliaZoom}.png`
+      `julia_${parameter}_${juliaView}_${juliaZoom}.png`
 
   const combinedName =
-      `mandelbrot_julia_${parameter}_${mandelbrotZoom}_${juliaZoom}.png`
+      `mandelbrot_julia_${parameter}_${juliaView}_${mandelbrotZoom}_${juliaZoom}.png`
 
   saveCanvas(
     mandelbrotCanvas,

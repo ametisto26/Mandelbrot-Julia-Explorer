@@ -13,11 +13,11 @@ export function updateInfo(
     mandelbrotState.cy.toFixed(10)
 
   // Julia view center
-  document.querySelector("#view-re")!.textContent =
-    juliaState.viewCx.toFixed(10)
+  // document.querySelector("#view-re")!.textContent =
+  //   juliaState.viewCx.toFixed(10)
 
-  document.querySelector("#view-im")!.textContent =
-    juliaState.viewCy.toFixed(10)
+  // document.querySelector("#view-im")!.textContent =
+  //   juliaState.viewCy.toFixed(10)
 
   // 入力欄
   const juliaCxInput =

@@ -287,7 +287,7 @@ window.addEventListener("keydown", (event) => {
       `c${mandelbrotState.cx.toFixed(10)}_${mandelbrotState.cy.toFixed(10)}`
 
   const juliaView =
-      `v${mandelbrotState.cx.toFixed(10)}_${mandelbrotState.cy.toFixed(10)}`
+      `v${juliaState.viewCx.toFixed(10)}_${juliaState.viewCy.toFixed(10)}`
 
   const mandelbrotZoom =
       `m${mandelbrotState.scale.toFixed(0)}`

@@ -4,6 +4,7 @@ import type {
   MandelbrotState,
   JuliaState,
 } from "./redraw"
+import { updateInfo } from "./updateJuliaPanel"
 
 export function setupJuliaDrag(
   mandelbrotCanvas: HTMLCanvasElement,
@@ -86,6 +87,11 @@ export function setupJuliaDrag(
 
       juliaState.viewCy +=
         dy / juliaCanvas.height * height
+
+      updateInfo(
+        mandelbrotState,
+        juliaState,
+      )
     },
   )
 }

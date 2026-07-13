@@ -10,6 +10,8 @@ import { setupDraw } from "./draw"
 import { redraw } from "./redraw"
 import { saveCanvas, saveCombinedCanvas } from "./saveCanvas"
 
+import { setColorMap, type ColorMapName } from "./colormap"
+
 import type { MandelbrotState, JuliaState } from "./redraw"
 
 // ====================
@@ -106,6 +108,17 @@ app.innerHTML = `
           Home
       </button>
 
+      <div class="row">
+        <span>Color:</span>
+
+        <select id="color-map">
+          <option value="twilight">Twilight</option>
+          <option value="classic">Classic</option>
+          <option value="fire">Fire</option>
+          <option value="ocean">Ocean</option>
+          <option value="grayscale">Grayscale</option>
+        </select>
+      </div>
     </section>
 
   </div>
@@ -156,6 +169,9 @@ const juliaCyInput =
 
 const juliaScaleInput =
   document.querySelector<HTMLInputElement>("#julia-scale")!
+
+const colorMapSelect =
+  document.querySelector<HTMLSelectElement>("#color-map")!
 
 // ====================
 // 状態
@@ -320,6 +336,25 @@ window.addEventListener("keydown", (event) => {
     combinedName,
   )
 })
+
+colorMapSelect.addEventListener(
+  "change",
+  () => {
+
+    setColorMap(
+      colorMapSelect.value as ColorMapName,
+    )
+
+    redraw(
+      mandelbrotCanvas,
+      juliaCanvas,
+      mandelbrotState,
+      juliaState,
+    )
+
+  },
+)
+
 
 // ====================
 // 初期表示

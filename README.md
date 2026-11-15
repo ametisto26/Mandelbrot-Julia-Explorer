@@ -285,11 +285,11 @@ Scale
 - Numba-accelerated computation
 - Smooth coloring
 - 2×2 supersampling
+- Multiple selectable color maps
 
 ### Planned
 
 - Click on the Mandelbrot set to change the Julia parameter
-- Multiple color maps
 - Favorite locations
 - High-resolution image export
 - Animation along parameter paths
